@@ -16,7 +16,7 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 todoist = TodoistAPI(todoist_api_key)
 
 @tool
-def add_task(task, desc):
+def add_task(task, desc=None):
     """Add a new task to the user's task list. Use this when the user wants to add or create a task"""
     todoist.add_task(content=task,
                      description=desc)
@@ -30,7 +30,8 @@ def show_tasks():
     for task_list in results_paginator:
         for task in task_list:
            tasks.append(task.content)
-    return tasks       
+    return tasks   
+    
 
 tools = [add_task, show_tasks]
 
